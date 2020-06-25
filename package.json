@@ -55,7 +55,6 @@
     "node": ">=8.9"
   },
   "dependencies": {
-    "@ailo/ailorn": "1.0.52",
     "apollo-cache-inmemory": "1.6.6",
     "apollo-client": "2.6.10",
     "apollo-link": "1.2.14",
@@ -72,6 +71,7 @@
     "codecov": "^3.7.0",
     "cz-conventional-changelog": "^3.2.0",
     "eslint": "7.3.1",
+    "graphql": "15.1.0",
     "husky": "4.2.5",
     "jest": "26.1.0",
     "lint-staged": "10.2.11",
