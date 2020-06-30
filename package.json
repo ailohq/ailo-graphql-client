@@ -23,9 +23,10 @@
     "test:watch": "jest --passWithNoTests --watch",
     "start": "run-s clean build:main && run-p \"build:main -- -w\" \"test:watch\"",
     "version": "standard-version",
-    "reset": "git clean -dfx && git reset --hard && npm i",
+    "reset": "git clean -dfx && git reset --hard && yarn",
     "clean": "trash build test",
-    "prepare-release": "run-s reset test version",
+    "prepare-release": "run-s reset lint test build version",
+    "release": "yarn prepare-release && git push --follow-tags origin master --no-verify && yarn publish --non-interactive",
     "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('@ailo/graphql-client must be installed with Yarn: https://yarnpkg.com/')\""
   },
   "husky": {

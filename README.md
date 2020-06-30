@@ -19,6 +19,5 @@ yarn test:watch
 ## Deployment
 
 ```
-git push
-yarn publish
+yarn release
 ```
