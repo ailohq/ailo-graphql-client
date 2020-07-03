@@ -5,7 +5,7 @@
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
-  "repository": "https://github.com/ailohq/ailo-graphql-client",
+  "repository": "https://github.com/ailohq/graphql-client",
   "license": "MIT",
   "keywords": [],
   "scripts": {
