@@ -1,5 +1,5 @@
 import { InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
-import { ApolloClient } from "apollo-client";
+import { ApolloClient, FetchPolicy } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { authLink, GetAccessTokenFn } from "./links/authLink";
 import { errorLink } from "./links/errorLink";
@@ -14,10 +14,12 @@ export function buildGraphQLClient({
   uri,
   logger = console,
   getAccessToken,
+  defaultFetchPolicy = "no-cache",
 }: {
   uri: string;
   logger?: Logger;
   getAccessToken?: GetAccessTokenFn;
+  defaultFetchPolicy?: FetchPolicy;
 }): GraphQLClient {
   return new ApolloClient({
     link: ApolloLink.from([
@@ -29,9 +31,9 @@ export function buildGraphQLClient({
     cache: new InMemoryCache(),
 
     defaultOptions: {
-      query: { errorPolicy: "all" },
-      watchQuery: { errorPolicy: "all" },
-      mutate: { errorPolicy: "all" },
+      query: { errorPolicy: "all", fetchPolicy: defaultFetchPolicy },
+      watchQuery: { errorPolicy: "all", fetchPolicy: defaultFetchPolicy },
+      mutate: { errorPolicy: "all", fetchPolicy: defaultFetchPolicy },
     },
   });
 }
