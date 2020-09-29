@@ -12,19 +12,21 @@ export { GetAccessTokenFn, Logger };
 
 export type GraphQLClient = ApolloClient<NormalizedCacheObject>;
 
+export interface GraphQLClientOptions {
+  uri: string;
+  logger?: Logger;
+  monitoring?: Monitoring;
+  getAccessToken?: GetAccessTokenFn;
+  defaultFetchPolicy?: FetchPolicy;
+}
+
 export function buildGraphQLClient({
   uri,
   logger = console,
   monitoring,
   getAccessToken,
   defaultFetchPolicy = "no-cache",
-}: {
-  uri: string;
-  logger?: Logger;
-  monitoring?: Monitoring;
-  getAccessToken?: GetAccessTokenFn;
-  defaultFetchPolicy?: FetchPolicy;
-}): GraphQLClient {
+}: GraphQLClientOptions): GraphQLClient {
   return new ApolloClient({
     link: ApolloLink.from([
       ...(getAccessToken ? [authLink({ getAccessToken })] : []),
