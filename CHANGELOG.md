@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/ailohq/graphql-client/compare/v2.1.5...v2.2.0) (2020-09-29)
+
+
+### Features
+
+* Accept `monitoring` param and send `Ailo-Traceparent` header through if there is an ongoing monitoring transaction ([2477bf4](https://github.com/ailohq/graphql-client/commit/2477bf435b353732f5efc20784c5373fd3c9eba6))
+
 ### [2.1.5](https://github.com/ailohq/graphql-client/compare/v2.1.4...v2.1.5) (2020-07-23)
 
 ### [2.1.4](https://github.com/ailohq/graphql-client/compare/v2.1.3...v2.1.4) (2020-07-23)
