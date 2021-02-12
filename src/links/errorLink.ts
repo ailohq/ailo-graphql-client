@@ -1,5 +1,5 @@
-import { ApolloLink } from "apollo-link";
-import { onError } from "apollo-link-error";
+import { ApolloLink } from "@apollo/client/core";
+import { onError } from "@apollo/client/link/error";
 import { Logger } from "../utils/Logger";
 
 export function errorLink({ logger }: { logger: Logger }): ApolloLink {

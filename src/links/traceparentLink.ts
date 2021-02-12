@@ -1,6 +1,6 @@
 import { Monitoring } from "@ailo/monitoring";
-import { ApolloLink } from "apollo-link";
-import { setContext } from "apollo-link-context";
+import { ApolloLink } from "@apollo/client/core";
+import { setContext } from "@apollo/client/link/context";
 
 export function traceparentLink({
   monitoring,

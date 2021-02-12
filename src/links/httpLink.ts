@@ -1,7 +1,6 @@
-import { ApolloLink, Operation } from "apollo-link";
-import { BatchHttpLink } from "apollo-link-batch-http";
-import { selectURI } from "apollo-link-http-common";
 import fetch from "cross-fetch";
+import { BatchHttpLink } from "@apollo/client/link/batch-http";
+import { ApolloLink, Operation, selectURI } from "@apollo/client/core";
 
 const httpLink = (graphqlUri: string): ApolloLink => {
   return new BatchHttpLink({

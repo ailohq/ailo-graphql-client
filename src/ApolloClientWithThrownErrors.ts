@@ -4,8 +4,8 @@ import {
   MutationOptions,
   OperationVariables,
   QueryOptions,
-} from "apollo-client";
-import { FetchResult } from "apollo-link";
+  FetchResult,
+} from "@apollo/client/core";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { GraphQLError } from "graphql";
 
@@ -14,11 +14,14 @@ export class ApolloClientWithThrownErrors<
 > extends ApolloClient<TCacheShape> {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   async query<T = any, TVariables = OperationVariables>(
-    options: QueryOptions<TVariables>,
+    options: QueryOptions<TVariables, T>,
     { throwOnError = true } = {}
   ): Promise<ApolloQueryResult<T>> {
     const response = await super.query(options);
     if (throwOnError) {
+      if (response.error) {
+        throw response.error;
+      }
       this.throwResponseErrorIfExists(response);
     }
     return response;
