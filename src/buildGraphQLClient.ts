@@ -1,16 +1,17 @@
 import { Monitoring } from "@ailo/monitoring/build/main/Monitoring";
 import { InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
-import { ApolloClient, FetchPolicy } from "apollo-client";
+import { FetchPolicy } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { authLink, GetAccessTokenFn } from "./links/authLink";
 import { errorLink } from "./links/errorLink";
 import { httpLink } from "./links/httpLink";
 import { traceparentLink } from "./links/traceparentLink";
 import { Logger } from "./utils/Logger";
+import { ApolloClientWithThrownErrors } from "./ApolloClientWithThrownErrors";
 
 export { GetAccessTokenFn, Logger };
 
-export type GraphQLClient = ApolloClient<NormalizedCacheObject>;
+export type GraphQLClient = ApolloClientWithThrownErrors<NormalizedCacheObject>;
 
 export interface GraphQLClientOptions {
   uri: string;
@@ -27,7 +28,7 @@ export function buildGraphQLClient({
   getAccessToken,
   defaultFetchPolicy = "no-cache",
 }: GraphQLClientOptions): GraphQLClient {
-  return new ApolloClient({
+  return new ApolloClientWithThrownErrors({
     link: ApolloLink.from([
       ...(getAccessToken ? [authLink({ getAccessToken })] : []),
       ...(monitoring ? [traceparentLink({ monitoring })] : []),

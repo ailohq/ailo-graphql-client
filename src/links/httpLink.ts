@@ -16,6 +16,7 @@ const httpLink = (graphqlUri: string): ApolloLink => {
         headers: context.headers,
       };
       return (
+        // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
         selectURI(operation, graphqlUri) +
         JSON.stringify(contextConfig) +
         operation.operationName
