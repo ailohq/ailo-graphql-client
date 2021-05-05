@@ -45,12 +45,33 @@ export class ApolloClientWithThrownErrors<
     errors?: ReadonlyArray<GraphQLError>;
   }): void {
     if (errors && errors.length > 0) {
-      const body = errors[0].extensions?.response?.body;
-      const bodyError = body?.errors;
-      if (bodyError) {
-        throw bodyError;
+      const error = errors[0];
+      const body = error.extensions?.response?.body;
+      if (body?.message || body?.errors) {
+        throw new GraphQLError(
+          body?.errors ? JSON.stringify(body.errors) : body.message,
+          error.nodes,
+          error.source,
+          error.positions,
+          error.path,
+          error.originalError,
+          error.extensions
+        );
       }
-      throw errors[0];
+
+      if (!(error instanceof GraphQLError)) {
+        throw new GraphQLError(
+          (error as GraphQLError).message,
+          (error as GraphQLError).nodes,
+          (error as GraphQLError).source,
+          (error as GraphQLError).positions,
+          (error as GraphQLError).path,
+          (error as GraphQLError).originalError,
+          (error as GraphQLError).extensions
+        );
+      }
+
+      throw error;
     }
   }
 }
