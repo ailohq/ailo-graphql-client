@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.2.8](https://github.com/ailohq/graphql-client/compare/v2.2.6...v2.2.8) (2021-06-09)
+
+
+### Bug Fixes
+
+* Improve the way ledger-service errors are shown ([51d3d79](https://github.com/ailohq/graphql-client/commit/51d3d79535f69ad801c71f1d84ef2b74cd95524e))
+* Remove Logger.log to make it match with @ailo/logger ([b84701f](https://github.com/ailohq/graphql-client/commit/b84701fe5bbd074cfed462335b061117e3ee0180))
+
 ### [2.2.7](https://github.com/ailohq/graphql-client/compare/v2.2.6...v2.2.7) (2021-05-05)
 
 
